@@ -5,9 +5,8 @@ import model.Produto;
 import java.util.List;
 
 public interface ProdutoDAO {
-    void inserir(Produto produto);
+    void adicionarEstoque(Long produtoId, int quantidade);
+    void removerEstoque(Long produtoId, int quantidade);
+    void adicionarProduto(Produto produto);
     Produto buscarPorId(Long id);
-    List<Produto> listarTodos();
-    void atualizar(Produto produto);
-    void deletar(Long id);
 }

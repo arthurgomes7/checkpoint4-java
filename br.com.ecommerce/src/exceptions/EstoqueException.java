@@ -1,7 +1,8 @@
 package exceptions;
 
-public class EstoqueException extends Exception {
+public class EstoqueException extends RuntimeException {
+
     public EstoqueException(String mensagem) {
-        System.out.println(mensagem);
+        super(mensagem);
     }
 }

@@ -19,10 +19,10 @@ public class ProdutoService {
         }
 
         p.setQuantidadeEstoque(p.getQuantidadeEstoque() + quantidade);
-        produtoDAO.atualizar(p);
+        produtoDAO.adicionarEstoque(id, quantidade);
     }
 
-    public void removerEstoque(Long id, int quantidade) throws EstoqueException {
+    public void removerEstoque(Long id, Integer quantidade) throws EstoqueException {
         Produto p = produtoDAO.buscarPorId(id);
 
         if (quantidade > p.getQuantidadeEstoque()) {
@@ -30,6 +30,6 @@ public class ProdutoService {
         }
 
         p.setQuantidadeEstoque(p.getQuantidadeEstoque() - quantidade);
-        produtoDAO.atualizar(p);
+        produtoDAO.removerEstoque(id, quantidade);
     }
 }
