@@ -1,35 +1,38 @@
 package service;
 
 import dao.ProdutoDAO;
+import dao.ProdutoDaoImpl;
 import exceptions.EstoqueException;
 import model.Produto;
 
 public class ProdutoService {
     private ProdutoDAO produtoDAO;
 
-    public ProdutoService(ProdutoDAO produtoDAO) {
+    public ProdutoService(ProdutoDaoImpl produtoDAO) {
         this.produtoDAO = produtoDAO;
     }
 
-    public void adicionarEstoque(Long id, int quantidade) throws EstoqueException {
-        Produto p = produtoDAO.buscarPorId(id);
+    public void adicionarEstoque(Long id, int quantidade) {
+        Produto produto = produtoDAO.buscarPorId(id);
 
-        if (quantidade <= 0) {
+        if (produto == null)
+            throw new EstoqueException("Produto não encontrado!");
+
+        if (quantidade <= 0)
             throw new EstoqueException("Quantidade inválida");
-        }
 
-        p.setQuantidadeEstoque(p.getQuantidadeEstoque() + quantidade);
         produtoDAO.adicionarEstoque(id, quantidade);
     }
 
-    public void removerEstoque(Long id, Integer quantidade) throws EstoqueException {
-        Produto p = produtoDAO.buscarPorId(id);
+    public void removerEstoque(Long id, Integer quantidade) {
+        Produto produto = produtoDAO.buscarPorId(id);
 
-        if (quantidade > p.getQuantidadeEstoque()) {
+        if (produto == null)
+            throw new EstoqueException("Produto não encontrado!");
+
+        if (quantidade > produto.getQuantidadeEstoque())
             throw new EstoqueException("Estoque insuficiente");
-        }
 
-        p.setQuantidadeEstoque(p.getQuantidadeEstoque() - quantidade);
         produtoDAO.removerEstoque(id, quantidade);
     }
 }
