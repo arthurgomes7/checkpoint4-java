@@ -56,3 +56,7 @@ A tabela `produtos` é verificada/criada automaticamente ao inicializar o DAO.
 - Acesso ao Oracle FIAP (ou outro Oracle) com credenciais válidas.
 
 ---
+Integrantes do Grupo:
+ - Arthur Gomes
+ - Pedro Estevam
+ - Samuel Becker
